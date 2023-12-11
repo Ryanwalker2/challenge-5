@@ -10,8 +10,6 @@ containerEl = document.querySelector('.container-lg');
 timeBlockEl = document.querySelectorAll('.time-block');
 var btnEl = $('#btn');
 var events = [];
-// var hourArr = [h9El, h10El, h11El, h12El, h1El, h2El, h3El, h4El, h5El];
-
 //Get the time of current time of day and convert to hour format.
 var currentTime = $(dayjs().format('H'));
 console.log(currentTime);
@@ -19,18 +17,14 @@ console.log(currentTime);
 $(function () {
   currentDayEl.textContent = day;
 });
-//create a section for each hour of the working day
-
-
-
-
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   btnEl.on('click', function (event) {
     event.preventDefault();
 
-    var eventsText = eventsInput.value.trim();
+    var eventsText = this.value.trim();
+    console.log(eventsText);
 
     if (eventsText === '') {
       return;
@@ -39,9 +33,9 @@ $(function () {
     events.push(eventText);
     eventsInput.value = '';
 
-    storeEvents();
-    renderEvents();
-      })
+    // storeEvents();
+    // renderEvents();
+      });
   });
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -49,24 +43,12 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
 
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  
-
-
-
-
-
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  $(function renderEvents() {
-    eventsList.innerHTML = '';
-    eventCountSpan.textContent = events.length;
+  function renderEvents() {
+    // eventsList.innerHTML = '';
+    // eventCountSpan.textContent = events.length;
 
       for (var x = 9; x < 18; x++) {
         var lineEl = document.createElement('section');
@@ -101,7 +83,7 @@ $(function () {
         lineEl.append(btnEl);
         btnEl.append(iconEl);
       }
-    });
+    };
 
 
 
